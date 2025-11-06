@@ -4,6 +4,7 @@ import Features from './components/Features/Features'
 import Gallery from './components/Gallery/Gallery'
 import FallingTextSection from './components/FallingText/FallingTextSection'
 import FolderSection from './components/Folder/FolderSection'
+import SplashCursor from './components/SplashCursor/SplashCursor'
 import logo from '/logo.svg';
 import './App.css'
 
@@ -41,6 +42,8 @@ const App = () => {
 
   return (
     <div className="app">
+      <SplashCursor />
+
       <CardNav
         logo={logo}
         logoAlt="ScribbleSense Logo"
@@ -68,7 +71,7 @@ const App = () => {
       <FolderSection />
 
       {/* Additional Sections */}
-     
+
     </div>
   );
 };
