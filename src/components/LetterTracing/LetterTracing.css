@@ -1,0 +1,173 @@
+.tracing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f9f7ff, #e0f7ff);
+  font-family: "Poppins", sans-serif;
+}
+
+.tracing-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.tracing-title {
+  font-size: 28px;
+  color: #5b21b6;
+  font-weight: 700;
+}
+
+.tracing-subtext {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.letter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.letter-buttons button {
+  background: #e5e7eb;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.letter-buttons button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.canvas-area {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: white;
+   z-index: 9999 !important;
+}
+
+.canvas-area canvas {
+  position: relative;
+  z-index: 10000 !important;
+  cursor: crosshair;
+}
+
+/* Dotted letter overlay */
+.letter-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 140px;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(59, 130, 246, 0.3);
+  z-index: 5;
+}
+
+.letter-overlay.dotted {
+  background-image: radial-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px);
+  background-size: 10px 10px;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.reset-btn,
+.submit-btn {
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-btn {
+  background: #6b7280;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
+}
+
+.submit-btn {
+  background: #ec4899;
+}
+
+.submit-btn:hover {
+  background: #db2777;
+}
+
+.result-message {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #5b21b6;
+}
+
+/* 🌟 Floating Star Animation */
+.star-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  font-size: 20px;
+  color: gold;
+  animation: floatStar 2s ease-out infinite;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+}
+
+@keyframes floatStar {
+  0% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(calc(-50px + 100px * var(--x)), calc(-50px + 100px * var(--y))) scale(1.2);
+  }
+  100% {
+    transform: translate(calc(-80px + 160px * var(--x)), calc(-80px + 160px * var(--y))) scale(0);
+    opacity: 0;
+  }
+}
+
+.star:nth-child(odd) {
+  --x: 0.5;
+  --y: -0.6;
+}
+.star:nth-child(even) {
+  --x: -0.3;
+  --y: 0.8;
+}
