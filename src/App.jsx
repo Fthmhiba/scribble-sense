@@ -7,6 +7,7 @@ import FolderSection from './components/Folder/FolderSection'
 import SplashCursor from './components/SplashCursor/SplashCursor'
 import logo from '/logo.png';
 import './App.css'
+import LetterTracing from './components/LetterTracing/LetterTracing'
 
 const App = () => {
   const items = [
@@ -63,6 +64,8 @@ const App = () => {
 
       {/* Gallery Section */}
       <Gallery />
+
+      <LetterTracing />
 
       {/* Falling Text Section */}
       <FallingTextSection />
