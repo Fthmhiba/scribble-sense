@@ -5,7 +5,7 @@ import Gallery from './components/Gallery/Gallery'
 import FallingTextSection from './components/FallingText/FallingTextSection'
 import FolderSection from './components/Folder/FolderSection'
 import SplashCursor from './components/SplashCursor/SplashCursor'
-import logo from '/logo.svg';
+import logo from '/logo.png';
 import './App.css'
 
 const App = () => {
