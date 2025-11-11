@@ -7,6 +7,8 @@ const LetterTracing = () => {
   const [selectedLetter, setSelectedLetter] = useState("A");
   const [showMessage, setShowMessage] = useState("");
   const [showStars, setShowStars] = useState(false);
+  const [completedLetters, setCompletedLetters] = useState([]);
+  const [allCompleted, setAllCompleted] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,6 +19,13 @@ const LetterTracing = () => {
     ctx.shadowColor = "#ff00aa";
     ctx.shadowBlur = 1;
   }, []);
+
+  // Check if all letters are completed
+  useEffect(() => {
+    if (completedLetters.length === 3) {
+      setAllCompleted(true);
+    }
+  }, [completedLetters]);
 
   const startDrawing = (e) => {
     const canvas = canvasRef.current;
@@ -52,10 +61,19 @@ const LetterTracing = () => {
     if (success) {
       setShowMessage("🎉 Great job!");
       setShowStars(true);
+      
+      // Add to completed letters if not already there
+      if (!completedLetters.includes(selectedLetter)) {
+        setCompletedLetters(prev => [...prev, selectedLetter]);
+      }
     } else {
       setShowMessage("❌ Try again!");
       setShowStars(false);
     }
+  };
+
+  const getCompletionStatus = (letter) => {
+    return completedLetters.includes(letter) ? "✅" : "";
   };
 
   return (
@@ -64,17 +82,31 @@ const LetterTracing = () => {
         <h2 className="tracing-title">Trace the Letter</h2>
         <p className="tracing-subtext">Follow the dotted guide and trace carefully!</p>
 
+        <div className="progress-section">
+          <p className="progress-text">
+            Progress: {completedLetters.length}/3 letters completed
+          </p>
+          <div className="progress-bar">
+            <div 
+              className="progress-fill"
+              style={{ width: `${(completedLetters.length / 3) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+
         <div className="letter-buttons">
           {["A", "B", "C"].map((letter) => (
             <button
               key={letter}
-              className={selectedLetter === letter ? "active" : ""}
+              className={`${selectedLetter === letter ? "active" : ""} ${
+                completedLetters.includes(letter) ? "completed" : ""
+              }`}
               onClick={() => {
                 setSelectedLetter(letter);
                 resetCanvas();
               }}
             >
-              {letter}
+              {letter} {getCompletionStatus(letter)}
             </button>
           ))}
         </div>
@@ -105,6 +137,26 @@ const LetterTracing = () => {
         </div>
 
         {showMessage && <p className="result-message">{showMessage}</p>}
+
+        {allCompleted && (
+          <div className="completion-section">
+            <div className="completion-message">
+              <h3>🎊 Congratulations! 🎊</h3>
+              <p>You've completed all three letters! Ready for more fun?</p>
+            </div>
+            <div className="download-section">
+              <a 
+                href="https://play.google.com/store/apps/details?id=com.scribblesense.app" // Replace with your actual app download link
+                className="download-link"
+              >
+                📱 Download Full App
+              </a>
+              <p className="download-subtext">
+                Get the complete app with all letters, numbers, and full interactive features!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

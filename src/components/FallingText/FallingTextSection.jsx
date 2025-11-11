@@ -6,8 +6,8 @@ const FallingTextSection = () => {
     <section className="falling-text-section">
       <div className="falling-text-section-container">
         <FallingText
-          text={`React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow.`}
-          highlightWords={["React", "Bits", "animated", "components", "simplify"]}
+          text={`Your ideas are important - let's make writing easier!`}
+          highlightWords={["your", "ideas", "important", "let's", "writing", "easier"]}
           highlightClass="highlighted"
           trigger="hover"
           backgroundColor="transparent"
